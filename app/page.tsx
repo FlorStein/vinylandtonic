@@ -49,7 +49,7 @@ export default function Home(){
     </section>
 
     <section className="sessions" id="sessions">
-      <div className="session-copy"><span className="tag">[ EN LA CABINA ]</span><h2>Esta<br/><em>semana.</em></h2><p>Selectors, coleccionistas y músicos comparten los discos que no suelen salir de casa.</p></div>
+      <div className="session-copy"><span className="tag">[ EN LA CABINA ]</span><h2>Esta<small>VOL. 01 · 24—26 JUL</small><em>semana.</em></h2><p>Selectors, coleccionistas y músicos comparten los discos que no suelen salir de casa.</p></div>
       <div className="record"><div className="vinyl"><span>{nights[night].artist}<br/><small>{nights[night].genre}</small></span></div></div>
       <div className="lineup">{nights.map((n,i)=><button className={night===i?"active":""} onClick={()=>setNight(i)} key={n.day}><span>{n.day}</span><b>{n.artist}</b><small>{n.genre}</small><em>{n.time}</em></button>)}</div>
     </section>

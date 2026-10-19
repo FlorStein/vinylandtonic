@@ -4,9 +4,9 @@ import { useState } from "react";
 
 const asset=(p:string)=>`${process.env.NEXT_PUBLIC_BASE_PATH??""}${p}`;
 const nights=[
-  {day:"JUE 24",artist:"Mora Funes",genre:"Soul · Rare groove",time:"21:30"},
-  {day:"VIE 25",artist:"Discos Pampa",genre:"Jazz-funk · Brasil",time:"22:00"},
-  {day:"SÁB 26",artist:"Nico Cota",genre:"Disco · Boogie",time:"22:30"},
+  {day:"JUE 22 OCT",artist:"Mora Funes",genre:"Soul · Rare groove",time:"21:30"},
+  {day:"VIE 23 OCT",artist:"Discos Pampa",genre:"Jazz-funk · Brasil",time:"22:00"},
+  {day:"SÁB 24 OCT",artist:"Nico Cota",genre:"Disco · Boogie",time:"22:30"},
 ];
 const drinks=[
   {name:"Side A",note:"Gin · bergamota · fino",price:"12"},
@@ -33,7 +33,7 @@ export default function Home(){
       <span className="kicker">LISTENING BAR · BUENOS AIRES</span>
       <h1><span>Vinyl</span><em>& Tonic</em></h1>
       <p>Buenos discos.<br/>Tragos precisos.<br/>Volumen justo.</p>
-      <a className="spin" href="#sessions"><i>▶</i><span>Esta noche<br/><b>{nights[0].artist}</b></span></a>
+      <a className="spin" href="#sessions"><i>▶</i><span>Próxima sesión<br/><b>{nights[0].artist}</b></span></a>
       <div className="hero-foot"><span>PALERMO · 19:00—02:00</span><span>SCROLL TO LISTEN ↓</span></div>
     </section>
 
@@ -49,7 +49,7 @@ export default function Home(){
     </section>
 
     <section className="sessions" id="sessions">
-      <div className="session-copy"><span className="tag">[ EN LA CABINA ]</span><h2>Esta<small>VOL. 01 · 24—26 JUL</small><em>semana.</em></h2><p>Selectors, coleccionistas y músicos comparten los discos que no suelen salir de casa.</p></div>
+      <div className="session-copy"><span className="tag">[ EN LA CABINA ]</span><h2>Esta<small>VOL. 01 · 22—24 OCT 2026</small><em>semana.</em></h2><p>Selectors, coleccionistas y músicos comparten los discos que no suelen salir de casa.</p></div>
       <div className="record"><div className="vinyl"><span>{nights[night].artist}<br/><small>{nights[night].genre}</small></span></div></div>
       <div className="lineup">{nights.map((n,i)=><button className={night===i?"active":""} onClick={()=>setNight(i)} key={n.day}><span>{n.day}</span><b>{n.artist}</b><small>{n.genre}</small><em>{n.time}</em></button>)}</div>
     </section>

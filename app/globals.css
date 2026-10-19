@@ -10,6 +10,17 @@
 @media(max-width:360px){.hero h1{font-size:19vw}.manifesto h2,.room h2,.session-copy h2,.live h2,.visit h2{font-size:13vw}}@media(prefers-reduced-motion:reduce){*{animation:none!important;scroll-behavior:auto!important}}
 
 /* Session title contrast and editorial detail */
+@media (max-width: 800px) {
+  .manifesto h2 em,
+  .room h2 em,
+  .session-copy h2 em,
+  .cocktail-card h2 em,
+  .live h2 em,
+  .visit h2 em {
+    -webkit-text-stroke: 0.3px currentColor;
+  }
+}
+
 .session-copy h2{position:relative;width:max-content}
 .session-copy h2 small{position:absolute;left:102%;top:18%;width:max-content;font:7px "DM Sans";letter-spacing:.18em;color:#efc9b5}
 .session-copy h2 em{display:block;color:#ffb5a6;margin-left:.62em;font-size:1.08em;line-height:.76;transform:rotate(-2deg)}

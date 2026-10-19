@@ -71,5 +71,6 @@ export default function Home(){
       <div className="details"><p>Gorriti 4812<br/>Palermo, Buenos Aires</p><p>Mié—Jue 19—01<br/>Vie—Sáb 19—02</p><p>+54 11 5555 3313<br/>@vinylandtonic</p></div>
     </section>
     <footer><span>VINYL & TONIC © 2026</span><span>33⅓ RPM · STEREO</span><a href="#top">VOLVER ARRIBA ↑</a></footer>
+    <div className="site-credit">Diseño y desarrollo web por <a href="https://studionolaatelier.com" target="_blank" rel="noopener noreferrer">Studio Nola ↗</a></div>
   </main>
 }

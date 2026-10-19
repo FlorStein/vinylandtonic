@@ -10,6 +10,9 @@
 @media(max-width:360px){.hero h1{font-size:19vw}.manifesto h2,.room h2,.session-copy h2,.live h2,.visit h2{font-size:13vw}}@media(prefers-reduced-motion:reduce){*{animation:none!important;scroll-behavior:auto!important}}
 
 /* Session title contrast and editorial detail */
+.site-credit{padding:0 4vw 24px;text-align:center;font-size:11px;line-height:1.6;color:var(--cream)}
+.site-credit a{text-decoration:underline;text-underline-offset:3px}
+.site-credit a:focus-visible{outline:1px solid currentColor;outline-offset:4px}
 @media (max-width: 800px) {
   .manifesto h2 em,
   .room h2 em,

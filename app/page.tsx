@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 const asset=(p:string)=>`${process.env.NEXT_PUBLIC_BASE_PATH??""}${p}`;
 const nights=[
@@ -13,10 +13,34 @@ const drinks=[
   {name:"Crimson Wax",note:"Campari · frambuesa · cacao",price:"14"},
   {name:"33⅓",note:"Whisky · miel tostada · bitters",price:"15"},
 ];
+const carta = [
+  {label:"Cócteles",title:"Lado A",items:[
+    ["Side A","Gin, bergamota, vermut fino y tónica. Cítrico, seco y fresco."],
+    ["Crimson Wax","Campari, frambuesa y cacao. Amargo, frutal y profundo."],
+    ["33⅓","Whisky, miel tostada y bitters. Cálido y envolvente."],
+    ["Blue Note","Gin, vermut seco, cordial de uva y limón. Floral y delicado."],
+    ["B-Side Martini","Vodka, vermut blanco y salmuera de aceitunas. Frío y salino."],
+    ["Último Track","Ron añejo, café y naranja. Intenso, para cerrar la noche."]]},
+  {label:"Sin alcohol",title:"Volumen bajo",items:[
+    ["Soft Groove","Pomelo rosado, romero y soda."],
+    ["Needle Drop","Té negro frío, durazno y limón."],
+    ["Silencio","Pepino, lima, menta y tónica."]]},
+  {label:"Cocina",title:"Para compartir",items:[
+    ["Olivas de la casa","Marinadas con naranja, ajo y hierbas."],
+    ["Papas de medianoche","Crocantes, con alioli de limón y pimentón ahumado."],
+    ["Burrata & tomates","Tomates asados, albahaca y pan de masa madre."],
+    ["Tostón de hongos","Hongos dorados, crema de parmesano y ciboulette."],
+    ["Tabla Lado B","Quesos, charcutería, conservas y crackers."],
+    ["Sándwich de pastrón","Pan tostado, mostaza antigua, pepinos y queso fundido."],
+    ["Chocolate en negro","Cremoso de chocolate amargo, oliva y sal."],
+    ["Flan de la casa","Con crema apenas batida y caramelo oscuro."]]}
+];
 
 export default function Home(){
   const [night,setNight]=useState(0);
   const [menu,setMenu]=useState(false);
+  const [course,setCourse]=useState(0);
+  const menuDialog=useRef<HTMLDialogElement>(null);
   return <main>
     <div className="noise"/>
     <header>
@@ -56,8 +80,18 @@ export default function Home(){
 
     <section className="cocktails" id="drinks">
       <img src={asset("/images/cocktails.png")} alt="Cócteles de autor junto a una tornamesa"/>
-      <div className="cocktail-card"><span className="tag">[ LA BARRA ]</span><h2>Drink by<br/><em>the mood.</em></h2>{drinks.map(d=><div className="drink" key={d.name}><b>{d.name}</b><span>{d.note}</span><em>{d.price}</em></div>)}<a href="mailto:hola@vinylandtonic.com">Ver carta completa ↗</a></div>
+      <div className="cocktail-card"><span className="tag">[ LA BARRA ]</span><h2>Drink by<br/><em>the mood.</em></h2>{drinks.map(d=><div className="drink" key={d.name}><b>{d.name}</b><span>{d.note}</span><em>{d.price}</em></div>)}<button className="menu-open" onClick={()=>menuDialog.current?.showModal()}>Ver carta completa ↗</button></div>
     </section>
+    <dialog ref={menuDialog} className="menu-dialog" aria-labelledby="carta-title" onClick={e=>{if(e.target===e.currentTarget) menuDialog.current?.close();}}>
+      <div className="menu-sheet">
+        <div className="menu-heading"><span className="tag">VINYL & TONIC · LA CARTA</span><button className="menu-close" aria-label="Cerrar carta" onClick={()=>menuDialog.current?.close()}>×</button></div>
+        <h2 id="carta-title">Algo para <em>acompañar.</em></h2>
+        <div className="menu-tabs" aria-label="Categorías de la carta">{carta.map((c,i)=><button key={c.label} aria-pressed={course===i} onClick={()=>setCourse(i)}>{c.label}</button>)}</div>
+        <img className="menu-photo" src={asset(`/images/menu-${course}.png`)} alt={["Cócteles de autor sobre la barra de madera","Bebidas sin alcohol en una mesa del bar","Platos para compartir en Vinyl & Tonic"][course]}/>
+        <h3>{carta[course].title}</h3>
+        <div className="menu-items">{carta[course].items.map(([name,note])=><article key={name}><h4>{name}</h4><p>{note}</p></article>)}</div>
+      </div>
+    </dialog>
 
     <section className="live">
       <img src={asset("/images/session.png")} alt="Sesión de vinilos en vivo"/>
